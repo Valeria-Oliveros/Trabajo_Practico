@@ -12,7 +12,7 @@ let libros = [
     { id: 1, titulo: "El Quijote", autor: "Miguel de Cervantes", anio: 1605, genero: "Novela", disponible: true },
     { id: 2, titulo: "El psicoanalista", autor: "John Katzenbach", anio: 2002, genero: "Thriller psicológic0", disponible: true },
     { id: 3, titulo: "Los Cuatro Acuerdos", autor: "Miguel Ruiz", anio: 2024, genero: "Autoayuda", disponible: true },
-    { id: 4, titulo: "El ladrón del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasía", disponible: true },
+    { id: 4, titulo: "Percy jackson y el ladrón del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasía", disponible: true },
     { id: 5, titulo: "Donde no puedas encontrarme", autor: "Tamara Molina", anio: 2024, genero: "Romance", disponible: true },
     { id: 6, titulo: "It", autor: "Stephen King", anio: 1986, genero: "Terror", disponible: true },
     { id: 7, titulo: "El resplandor", autor: "Stephen King", anio: 1977, genero: "Terror", disponible: true },
