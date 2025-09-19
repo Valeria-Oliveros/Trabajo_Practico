@@ -20,3 +20,12 @@ let libros = [
     { id: 9, titulo: "Harry potter y las reliquias de la muerte", autor: "J.K. Rowling", anio: 2007, genero: "Fantasía", disponible: true },
     { id: 10, titulo: "La paciente sileciosa", autor: "Alex Michaelides", anio: 2019, genero: "Thriller psicológico", disponible: true },
 ];
+
+// B. Creamos el array de los 5 usuarios que solicita el ejercicio
+let usuarios = [
+    { id: 1, nombre: "Valeria Oliveros", email: "valeriao@gmail.com", librosPrestados: [] },
+    { id: 2, nombre: "Micaela Martinez", email: "micaelam@gmail.com", librosPrestados: [] },
+    { id: 3, nombre: "Agostina Campos", email: "agostinac@gmail.com", librosPrestados: [] },
+    { id: 4, nombre: "Isabel Pérez", email: "isabelp@gmail.com", librosPrestados: [] },
+    { id: 5, nombre: "Aketzalli Alonso", email: "aketzallia@gmail.com", librosPrestados: [] },
+];
