@@ -1,13 +1,12 @@
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // Título: Trabajo Práctico Integrador
 // Programa: Gestión simple de biblioteca
 // Autor: Valeria Oliveros - Agostina Campos - Micaela Martinez - Isabel Peréz - Aketzalli Alonso
 // Fecha: 23/09/2025
 // Intitución: Ada ITW
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// 1. Estructura de Datos------------------------------------------------------------------------------------------------------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 1. Estructura de Datos
+//-------------------------------------------------------------------------------------------------
 // A. Creamos los arrays de los 10 libros que solicita el ejercicio
 let libros = [
     { id: 1, titulo: "El Quijote", autor: "Miguel de Cervantes", anio: 1605, genero: "Novela", disponible: true },
@@ -29,9 +28,9 @@ let usuarios = [
     { id: 4, nombre: "Isabel Pérez", email: "isabelP@gmail.com", librosPrestados: [] },
     { id: 5, nombre: "Aketzalli Alonso", email: "aketzalliA@gmail.com", librosPrestados: [] },
 ];
-
-// 2.Funciones de gestión de libros -> En este bloque se implementan las funciones básicas para gestionar libros---------------------------------------------------
- 
+//-------------------------------------------------------------------------------------------------
+// 2.Funciones de gestión de libros -> En este bloque se implementan las funciones básicas para gestionar libros
+//-------------------------------------------------------------------------------------------------
 // A. Función agregar un nuevo libro ->
 // Esta función recibe los datos del libro ingresados por el usuario como parámetros 
 // Asigna un ID único al nuevo libro
@@ -107,17 +106,17 @@ function borrarLibro(id) {
     }
     console.log("Array de libros actualizado:" + JSON.stringify(libros, null, 2));
 }
-
-// 3. Funciones de gestión de usuarios -> En este bloque se implementan las funciones básicas para gestionar usuarios----------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 3. Funciones de gestión de usuarios -> En este bloque se implementan las funciones básicas para gestionar usuarios
+//-------------------------------------------------------------------------------------------------
 // ⚠️ Falta 
 // A. Función agregar un nuevo usuario ->
 // B. Función muestra el array completo de usuarios
 // C. Función buscar usuario por email
 // D. Función borrar usuario por su nombre y email
-
-// 4. Funciones de sistema de préstamos -> En este bloque se implementan las funciones básicas para gestionar el sistema de préstamos------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 4. Funciones de sistema de préstamos -> En este bloque se implementan las funciones básicas para gestionar el sistema de préstamos
+//-------------------------------------------------------------------------------------------------
 // Funciones para mostrar los libros disponibles y prestados ->
 function mostrarLibrosDisponibles() {
     const librosDisponibles = libros.filter(libro => libro.disponible);
@@ -194,9 +193,9 @@ function devolverLibro(idLibro, idUsuario) {
     alert("El libro: '" + Busquedalibro.titulo + "' ha sido devuelto exitosamente");
     //return "libro devuelto exitosamente";
 };
-
-// 5. Funciones de reportes -> En este bloque se implementan las funciones básicas para generar reportes-----------------------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 5. Funciones de reportes -> En este bloque se implementan las funciones básicas para generar reportes
+//-------------------------------------------------------------------------------------------------
 function generarReporteLibros(libros) { // Cantidad total de libros 
     const cantidadTotal = libros.length;
     // Libros prestados
@@ -213,9 +212,9 @@ function generarReporteLibros(libros) { // Cantidad total de libros
     console.log("Libro más antiguo: " + (libroMasAntiguo ? JSON.stringify(libroMasAntiguo, null, 2) : "No hay libros en la biblioteca"));
     console.log("Libro más nuevo: " + (libroMasNuevo ? JSON.stringify(libroMasNuevo, null, 2) : "No hay libros en la biblioteca"));
 } 
-
-// 6. Funciones de identificación avanzada de libros -> En este bloque se implementa la funcion básicas para identificar libros------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 6. Funciones de identificación avanzada de libros -> En este bloque se implementa la funcion básicas para identificar libros
+//-------------------------------------------------------------------------------------------------
 function librosConPalabrasEnTitulo(){
     //Se filtran los titulos de libros que contengan solo letras mayúsculas y minúsculas
     let titulosFiltro = libros.filter(libro =>{
@@ -239,13 +238,13 @@ if(titulosFiltro.length === 0){
     console.log(soloTitulos);
 }
 };
-
-// 7. Funciones de cálculos estadísticos -> En este bloque se implementan las funciones básicas para realizar cálculos estadísticos--------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 7. Funciones de cálculos estadísticos -> En este bloque se implementan las funciones básicas para realizar cálculos estadísticos
+//-------------------------------------------------------------------------------------------------
 // ⚠️ Falta 
-
-// 8. Funciones de normalización de datos -> En este bloque se implementan las funciones básicas para normalizar datos---------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 8. Funciones de normalización de datos -> En este bloque se implementan las funciones básicas para normalizar datos
+//-------------------------------------------------------------------------------------------------
 function normalizarDatos(libros, usuarios) {
     // Convertir todos los títulos a mayúsculas
     const titulosMayusculas = libros.map(libro => libro.titulo.toUpperCase());
@@ -261,9 +260,9 @@ function normalizarDatos(libros, usuarios) {
     console.log("Nombres de autores normalizados:\n" + listadoAutoresNormalizados);
     console.log("Usuarios con emails en minúsculas:\n" + listadoUsuariosNormalizados);
 }
-
-// 9. Menú de opciones -> En este bloque se implementa el menú de opciones para que el usuario pueda interactuar con el sistema------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+// 9. Menú de opciones -> En este bloque se implementa el menú de opciones para que el usuario pueda interactuar con el sistema
+//-------------------------------------------------------------------------------------------------
 let menu = parseInt(prompt("Ingrese una opcion para continuar: \n1. Gestionar libros \n2. Gestionar usuarios\n3. Sistema de préstamos\n4. Reportes\n5. Identificación de libros\n6. Cálculos Estadísticos\n7. Normalización de datos\n8. Salir"));
 while (menu != 8) {
     if (menu == 1) {
