@@ -10,15 +10,15 @@
 // A. Creamos los arrays de los 10 libros que solicita el ejercicio
 let libros = [
     { id: 1, titulo: "El Quijote", autor: "Miguel de Cervantes", anio: 1605, genero: "Novela", disponible: true },
-    //{ id: 2, titulo: "El psicoanalista", autor: "John Katzenbach", anio: 2002, genero: "Thriller psicológic0", disponible: true },
-    //{ id: 3, titulo: "Los 4 Acuerdos", autor: "Miguel Ruiz", anio: 2024, genero: "Autoayuda", disponible: true },
-    // { id: 4, titulo: "El ladron del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasia", disponible: true },
-    // { id: 5, titulo: "Donde no puedas encontrarme", autor: "Tamara Molina", anio: 2024, genero: "Romance", disponible: true },
-    // { id: 6, titulo: "It", autor: "Stephen King", anio: 1986, genero: "Terror", disponible: true },
-    // { id: 7, titulo: "El resplandor", autor: "Stephen King", anio: 1977, genero: "Terror", disponible: true },
-    // { id: 8, titulo: "Harry potter y la piedra filosofal", autor: "J.K. Rowling", anio: 1997, genero: "Fantasia", disponible: true },
-    // { id: 9, titulo: "Harry potter y las reliquias de la muerte", autor: "J.K. Rowling", anio: 2007, genero: "Fantasia", disponible: true },
-    // { id: 10, titulo: "La paciente sileciosa", autor: "Alex Michaelides", anio: 2019, genero: "Thriller psicológico", disponible: true },
+    { id: 2, titulo: "El psicoanalista", autor: "John Katzenbach", anio: 2002, genero: "Thriller psicológic0", disponible: true },
+    { id: 3, titulo: "Los 4 Acuerdos", autor: "Miguel Ruiz", anio: 2024, genero: "Autoayuda", disponible: true },
+    { id: 4, titulo: "El ladron del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasia", disponible: true },
+    { id: 5, titulo: "Donde no puedas encontrarme", autor: "Tamara Molina", anio: 2024, genero: "Romance", disponible: true },
+    { id: 6, titulo: "It", autor: "Stephen King", anio: 1986, genero: "Terror", disponible: true },
+    { id: 7, titulo: "El resplandor", autor: "Stephen King", anio: 1977, genero: "Terror", disponible: true },
+    { id: 8, titulo: "Harry potter y la piedra filosofal", autor: "J.K. Rowling", anio: 1997, genero: "Fantasia", disponible: true },
+    { id: 9, titulo: "Harry potter y las reliquias de la muerte", autor: "J.K. Rowling", anio: 2007, genero: "Fantasia", disponible: true },
+    { id: 10, titulo: "La paciente sileciosa", autor: "Alex Michaelides", anio: 2019, genero: "Thriller psicológico", disponible: true },
 ];
 // B. Creamos el array de los 5 usuarios que solicita el ejercicio
 let usuarios = [
@@ -136,7 +136,6 @@ function mostrarLibrosPrestados() {
         alert("No hay libros prestados en este momento.");
     }
 }
-
 // A. Función prestar libro a un usuario ->
 function prestarLibro(idLibro, idUsuario) {
     //Se utiliza el método fin para encontrar el ID del usuario y el ID del libro.
@@ -164,7 +163,6 @@ function prestarLibro(idLibro, idUsuario) {
     alert("El libro: '" + Busquedalibro.titulo + "' ha sido prestado");
     //return true;
 };
-
 // B. Función devolver libro prestado por un usuario ->
 function devolverLibro(idLibro, idUsuario) {
     // Se llaman las variables de busqueda del ID del libro y del ID del usuario.
