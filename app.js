@@ -11,15 +11,15 @@
 // A. Creamos los arrays de los 10 libros que solicita el ejercicio
 let libros = [
     { id: 1, titulo: "El Quijote", autor: "Miguel de Cervantes", anio: 1605, genero: "Novela", disponible: true },
-    { id: 2, titulo: "El psicoanalista", autor: "John Katzenbach", anio: 2002, genero: "Thriller psicológic0", disponible: true },
-    { id: 3, titulo: "Los 4 Acuerdos", autor: "Miguel Ruiz", anio: 2024, genero: "Autoayuda", disponible: true },
-    { id: 4, titulo: "El ladron del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasia", disponible: true },
-    { id: 5, titulo: "Donde no puedas encontrarme", autor: "Tamara Molina", anio: 2024, genero: "Romance", disponible: true },
-    { id: 6, titulo: "It", autor: "Stephen King", anio: 1986, genero: "Terror", disponible: true },
-    { id: 7, titulo: "El resplandor", autor: "Stephen King", anio: 1977, genero: "Terror", disponible: true },
-    { id: 8, titulo: "Harry potter y la piedra filosofal", autor: "J.K. Rowling", anio: 1997, genero: "Fantasia", disponible: true },
-    { id: 9, titulo: "Harry potter y las reliquias de la muerte", autor: "J.K. Rowling", anio: 2007, genero: "Fantasia", disponible: true },
-    { id: 10, titulo: "La paciente sileciosa", autor: "Alex Michaelides", anio: 2019, genero: "Thriller psicológico", disponible: true },
+    //{ id: 2, titulo: "El psicoanalista", autor: "John Katzenbach", anio: 2002, genero: "Thriller psicológic0", disponible: true },
+    //{ id: 3, titulo: "Los 4 Acuerdos", autor: "Miguel Ruiz", anio: 2024, genero: "Autoayuda", disponible: true },
+    // { id: 4, titulo: "El ladron del rayo", autor: "Rick Riordan", anio: 2005, genero: "Fantasia", disponible: true },
+    // { id: 5, titulo: "Donde no puedas encontrarme", autor: "Tamara Molina", anio: 2024, genero: "Romance", disponible: true },
+    // { id: 6, titulo: "It", autor: "Stephen King", anio: 1986, genero: "Terror", disponible: true },
+    // { id: 7, titulo: "El resplandor", autor: "Stephen King", anio: 1977, genero: "Terror", disponible: true },
+    // { id: 8, titulo: "Harry potter y la piedra filosofal", autor: "J.K. Rowling", anio: 1997, genero: "Fantasia", disponible: true },
+    // { id: 9, titulo: "Harry potter y las reliquias de la muerte", autor: "J.K. Rowling", anio: 2007, genero: "Fantasia", disponible: true },
+    // { id: 10, titulo: "La paciente sileciosa", autor: "Alex Michaelides", anio: 2019, genero: "Thriller psicológico", disponible: true },
 ];
 // B. Creamos el array de los 5 usuarios que solicita el ejercicio
 let usuarios = [
@@ -39,6 +39,11 @@ let usuarios = [
 // Muestra un mensaje de confirmación al usuario
 // Imprime el array actualizado en la consola
 function agregarLibro(titulo, autor, anio, genero) {
+    // Validación si ingresan un campo vacio 
+    if (!titulo || !autor || !genero || !anio) {
+        alert("Error: Todos los campos son obligatorios para agregar un libro.");
+        return;
+    }
     const nuevoId = libros.length > 0 ? Math.max(...libros.map(libro => libro.id)) + 1 : 1;
     const nuevoLibro = {
         id: nuevoId,
@@ -323,6 +328,12 @@ while (menu != 8) {
         do {
             menuPrestamos = parseInt(prompt("Seleccione una opción: \n1. Prestar libro\n2. Devolver libro\n3. Volver al menú principal"));
             if (menuPrestamos == 1) {
+                const librosDisponibles = libros.filter(libro => libro.disponible)
+                if (librosDisponibles.length === 0){
+                    alert("No hay libros disponibles para prestar en este momento... \nVolviendo al menú principal.");
+                    menuPrestamos = 3;
+                    continue;
+                }
                 alert("Mostrando listados de libros y usuarios disponibles...");
                 mostrarLibrosDisponibles();
                 const listadoUsuarios = usuarios.map(user => `ID: ${user.id}, Nombre: ${user.nombre}`).join('\n');
