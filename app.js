@@ -22,11 +22,11 @@ let libros = [
 ];
 // B. Creamos el array de los 5 usuarios que solicita el ejercicio
 let usuarios = [
-    { id: 1, nombre: "Valeria Oliveros", email: "valeriaO@gmail.com", librosPrestados: [] },
-    { id: 2, nombre: "Micaela Martinez", email: "micaelaM@gmail.com", librosPrestados: [] },
-    { id: 3, nombre: "Agostina Campos", email: "agostinaC@gmail.com", librosPrestados: [] },
-    { id: 4, nombre: "Isabel Pérez", email: "isabelP@gmail.com", librosPrestados: [] },
-    { id: 5, nombre: "Aketzalli Alonso", email: "aketzalliA@gmail.com", librosPrestados: [] },
+    { id: 1, nombre: "Valeria Oliveros", email: "valeriao@gmail.com", librosPrestados: [] },
+    { id: 2, nombre: "Micaela Martinez", email: "micaelam@gmail.com", librosPrestados: [] },
+    { id: 3, nombre: "Agostina Campos", email: "agostinac@gmail.com", librosPrestados: [] },
+    { id: 4, nombre: "Isabel Pérez", email: "isabelp@gmail.com", librosPrestados: [] },
+    { id: 5, nombre: "Aketzalli Alonso", email: "aketzallia@gmail.com", librosPrestados: [] },
 ];
 //-------------------------------------------------------------------------------------------------
 // 2.Funciones de gestión de libros -> En este bloque se implementan las funciones básicas para gestionar libros
@@ -259,12 +259,12 @@ function devolverLibro(idLibro, idUsuario) {
     const BusquedaUsuario = usuarios.find(user => user.id === idUsuario);
     // Se verifica la información del idLibro ingresado.
     if (!Busquedalibro) {
-        alert("❌ Libro con ID" + idLibro + "no encontrado");
+        alert("❌ Libro con ID: " + idLibro + " no encontrado");
         return;
     }
     // Se verifica la información del idUsuario ingresado.
     if (!BusquedaUsuario) {
-        alert("❌ Usuario con ID" + idUsuario + "no encontrado");
+        alert("❌ Usuario con ID: " + idUsuario + " no encontrado");
         return;
     }
     // Se verifica si el libro está en la lista de libros prestados del usuario.
