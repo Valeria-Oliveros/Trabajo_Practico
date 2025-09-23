@@ -141,6 +141,7 @@ function registrarUsuario(nombre, email){
         librosPrestados: [],
     };
     usuarios.push(nuevoUsuario);
+    alert("✅ Usuario registrado con exito...");
     console.log("Array de usuarios actualizado:");
     console.log(JSON.stringify(usuarios, null, 2));
 }
@@ -243,7 +244,7 @@ function prestarLibro(idLibro, idUsuario) {
     Busquedalibro.disponible = false;
     //Se agrega a la caracteristica del usuario libros prestados(titulo del libro).
     BusquedaUsuario.librosPrestados.push(Busquedalibro.titulo);
-    alert("❌ El libro: '" + Busquedalibro.titulo + "' ha sido prestado");
+    alert("✅ El libro: '" + Busquedalibro.titulo + "' ha sido prestado");
     //return true;
 };
 
@@ -451,7 +452,6 @@ while (menu != 8) {
                 let nombre = prompt("Ingrese su nombre completo para el registro: ");
                 let email = prompt("Ingrese su email para el registro: ");
                 registrarUsuario(nombre, email);
-                alert("✅ Usuario registrado con exito...");
             } else if (menuUsuarios == 2){
                 mostrarTodosLosUsuarios();
                 alert("✨ Mostrando todos los usuarios registrados...");
