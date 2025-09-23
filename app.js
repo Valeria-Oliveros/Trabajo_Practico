@@ -40,7 +40,7 @@ let usuarios = [
 function agregarLibro(titulo, autor, anio, genero) {
     // Validación si ingresan un campo vacio 
     if (!titulo || !autor || !genero || !anio) {
-        alert("Error: Todos los campos son obligatorios para agregar un libro.");
+        alert("⚠️ Error: Todos los campos son obligatorios para agregar un libro ⚠️");
         return;
     }
     const nuevoId = libros.length > 0 ? Math.max(...libros.map(libro => libro.id)) + 1 : 1;
@@ -53,7 +53,7 @@ function agregarLibro(titulo, autor, anio, genero) {
         disponible: true,
     };
     libros.push(nuevoLibro);
-    alert("Libro agregado exitosamente.");
+    alert("✅ Libro agregado exitosamente.");
     console.log(JSON.stringify(libros, null, 2));
 }
 // B. Función buscar libro por título, autor o género->
@@ -61,12 +61,17 @@ function agregarLibro(titulo, autor, anio, genero) {
 // Utiliza el método filter para encontrar libros que coincidan con el término en el título, autor o género
 // Devuelve un array con los libros encontrados.
 function buscarLibro(criterio, valor) {
+    // validación si ingresan un campo vacio
+    if (!criterio || !valor){
+        alert ("⚠️ Error: El campo es obligatorio para buscar el libro ⚠️");
+        return;
+    }
     let resultadoBusqueda = libros.filter((libro) => libro[criterio] && libro[criterio].toString().toLowerCase().includes(valor.toString().toLowerCase()));
     if (resultadoBusqueda.length > 0) {
-        alert("Libro/s encontrado/s con éxito.");
+        alert("✅ Libro/s encontrado/s con éxito.");
         console.log(JSON.stringify(resultadoBusqueda, null, 2));
     } else {
-        alert("No se encontraron libros que coincidan con la búsqueda.");
+        alert("❌ No se encontraron libros que coincidan con la búsqueda.");
     }
 }
 // C. Función ordenar libros por título o año de publicación ->
@@ -76,7 +81,7 @@ function buscarLibro(criterio, valor) {
 function ordenarLibros(criterio) {
     if (criterio === "titulo") {
         libros.sort((a, b) => a.titulo.localeCompare(b.titulo));
-        alert("Libros ordenados por título con éxito.");
+        alert("✅ Libros ordenados por título con éxito.");
         console.log(JSON.stringify(libros, null, 2));
         return;
     } else if (criterio === "anio") {
@@ -85,7 +90,7 @@ function ordenarLibros(criterio) {
             if (a[criterio] > b[criterio]) return 1;
             return 0;
         });
-        alert("Libros ordenados por año con éxito.");
+        alert("✅ Libros ordenados por año con éxito.");
         console.log(JSON.stringify(libros, null, 2));
     }
 }
@@ -96,24 +101,96 @@ function ordenarLibros(criterio) {
 // Muestra un mensaje de confirmación o error según corresponda
 // Imprime el array actualizado en la consola
 function borrarLibro(id) {
+    // validación si ingresan un campo vacio
+    if (!id){
+        alert ("⚠️ Error: Es obligatorio ingresar el id para borrar el libro ⚠️");
+        return;
+    }
     let index = libros.findIndex((libro) => libro.id === id);
     if (index !== -1) {
         let libroEliminado = libros.splice(index, 1);
-        alert("Libro eliminado con éxito.");
+        alert("✅ Libro eliminado con éxito.");
         console.log(JSON.stringify(libroEliminado, null, 2) + "\nFue el libro eliminado.");
     } else {
-        alert("No se encontró un libro con el ID proporcionado.");
+        alert("❌ No se encontró un libro con el ID proporcionado.");
     }
     console.log("Array de libros actualizado:" + JSON.stringify(libros, null, 2));
 }
 //-------------------------------------------------------------------------------------------------
 // 3. Funciones de gestión de usuarios -> En este bloque se implementan las funciones básicas para gestionar usuarios
 //-------------------------------------------------------------------------------------------------
-// ⚠️ Falta 
 // A. Función agregar un nuevo usuario ->
-// B. Función muestra el array completo de usuarios
+function registrarUsuario(nombre, email){
+    // validación si ingresan un campo vacio
+    if (!nombre || !email){
+        alert ("⚠️ Error: Todos los campos son obligatorios para el registro de un nuevo usuario ⚠️");
+        return;
+    }
+    // validación si el usuario ya existe 
+    for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].email === email) {
+            alert("⚠️ El correo electrónico '" + email + "' ya está registrado");
+            return;
+        }
+    }
+    const nuevoId = usuarios.length > 0 ? Math.max(...usuarios.map(usuarios => usuarios.id)) + 1: 1;
+    const nuevoUsuario = {
+        id:nuevoId,
+        nombre: nombre,
+        email: email,
+        librosPrestados: [],
+    };
+    usuarios.push(nuevoUsuario);
+    console.log("Array de usuarios actualizado:");
+    console.log(JSON.stringify(usuarios, null, 2));
+}
+// B. Función muestra el array completo de usuarios ->
+function mostrarTodosLosUsuarios() {
+    if (usuarios.length === 0) {
+        alert("⚠️ No hay usuarios registrados.");
+    } else {
+        console.log("Lista de usuarios:");
+        for (let i = 0; i < usuarios.length; i++) {
+            console.log("Nombre: " + usuarios[i].nombre + "\nEmail: " + usuarios[i].email);
+        }
+    }
+    return;
+}
 // C. Función buscar usuario por email
+function buscarUsuario(email) {
+    // validación si ingresan un campo vacio
+    if (!email){
+        alert ("⚠️ Error: Es obligatorio ingresar el email para la busqueda ⚠️");
+        return;
+    }
+    const usuario = usuarios.find(function(u) {
+        return u.email === email;
+    });
+    if (!usuario) {
+        alert("❌ No se encontró ningún usuario con el email: " + email);
+        return;
+    }
+    alert("✨ Mostrando datos del usuario...");
+    console.log("id: " + usuario.id + "\nNombre: " + usuario.nombre + "\nEmail: " + usuario.email + "\nlibrosPrestados: " + usuario.librosPrestados);
+    return;
+}
 // D. Función borrar usuario por su nombre y email
+function borrarUsuario(nombre, email) {
+    // validación si ingresan un campo vacio
+    if (!nombre || !email){
+        alert ("⚠️ Error: Todos los campos son obligatorios para borrar el usuario ⚠️");
+        return;
+    }
+    const indice = usuarios.findIndex(u => u.nombre === nombre && u.email === email);
+    if (indice === -1) {
+        alert("❌ No se encontró al usuario '" + nombre + "' con email '" + email + "'");
+        return;
+    }
+    usuarios.splice(indice, 1);
+    alert("✅ Usuario '" + nombre +"' eliminado correctamente.");
+    console.log(JSON.stringify(usuarios, null, 2));
+
+}
 //-------------------------------------------------------------------------------------------------
 // 4. Funciones de sistema de préstamos -> En este bloque se implementan las funciones básicas para gestionar el sistema de préstamos
 //-------------------------------------------------------------------------------------------------
@@ -124,7 +201,7 @@ function mostrarLibrosDisponibles() {
         const listadoLibrosDisponibles = librosDisponibles.map(book => `ID: ${book.id}, Título: ${book.titulo}`).join('\n');
         console.log(listadoLibrosDisponibles);
     } else {
-        alert("No hay libros disponibles en este momento.");
+        alert("❌ No hay libros disponibles en este momento.");
     }
 }
 function mostrarLibrosPrestados() {
@@ -133,62 +210,73 @@ function mostrarLibrosPrestados() {
         const listadoLibrosPrestados = librosPrestados.map(book => `ID: ${book.id}, Título: ${book.titulo}`).join('\n');
         console.log(listadoLibrosPrestados);
     } else {
-        alert("No hay libros prestados en este momento.");
+        alert("❌ No hay libros prestados en este momento.");
     }
 }
+
 // A. Función prestar libro a un usuario ->
 function prestarLibro(idLibro, idUsuario) {
+    // validación si ingresan un campo vacio
+    if (!idLibro || !idUsuario){
+        alert ("⚠️ Error: Todos los campos son obligatorios para prestar el libro ⚠️");
+        return;
+    }
     //Se utiliza el método fin para encontrar el ID del usuario y el ID del libro.
     const Busquedalibro = libros.find(book => book.id === idLibro);
     const BusquedaUsuario = usuarios.find(user => user.id === idUsuario);
     // Se verifica el idLibro ingresado.
     if (!Busquedalibro) {
-        alert("Error: libro con ID: " + idLibro + " no encontrado");
+        alert("⚠️ Error: libro con ID: " + idLibro + " no encontrado ⚠️");
         return;
     }
     // Se verifica el idUsuario ingresado.
     if (!BusquedaUsuario) {
-        alert("Error: usuario con ID: " + idUsuario + " no encontrado");
+        alert("❌ Usuario con ID: " + idUsuario + " no encontrado");
         return;
     }
     // Se verifica la disponibilidad del libro.
     if (!Busquedalibro.disponible) {
-        alert("Error: El libro con ID: " + idLibro + " no está disponible");
+        alert("❌ El libro con ID: " + idLibro + " no está disponible");
         return;
     }
     // Se coloca la disponibilidad(false) del libro que ha sido prestado.
     Busquedalibro.disponible = false;
     //Se agrega a la caracteristica del usuario libros prestados(titulo del libro).
     BusquedaUsuario.librosPrestados.push(Busquedalibro.titulo);
-    alert("El libro: '" + Busquedalibro.titulo + "' ha sido prestado");
+    alert("❌ El libro: '" + Busquedalibro.titulo + "' ha sido prestado");
     //return true;
 };
+
 // B. Función devolver libro prestado por un usuario ->
 function devolverLibro(idLibro, idUsuario) {
+    if (!idLibro || !idUsuario){
+        alert ("⚠️ Error: Todos los campos son obligatorios para devolver el libro ⚠️");
+        return;
+    }
     // Se llaman las variables de busqueda del ID del libro y del ID del usuario.
     const Busquedalibro = libros.find(book => book.id === idLibro);
     const BusquedaUsuario = usuarios.find(user => user.id === idUsuario);
     // Se verifica la información del idLibro ingresado.
     if (!Busquedalibro) {
-        alert("Error: libro con ID" + idLibro + "no encontrado");
+        alert("❌ Libro con ID" + idLibro + "no encontrado");
         return;
     }
     // Se verifica la información del idUsuario ingresado.
     if (!BusquedaUsuario) {
-        alert("Error: usuario con ID" + idUsuario + "no encontrado");
+        alert("❌ Usuario con ID" + idUsuario + "no encontrado");
         return;
     }
     // Se verifica si el libro está en la lista de libros prestados del usuario.
     const indiceLibroPrestado = BusquedaUsuario.librosPrestados.indexOf(Busquedalibro.titulo);
     if (indiceLibroPrestado === -1) {
-        alert("Error: el libro no está prestado a este usuario");
+        alert("❌ El libro no está prestado a este usuario");
         return;
     }
     // Se actualiza la disponibilidad del libro a true (disponible).
     Busquedalibro.disponible = true;
     //Se elimina de el libro del usuario con el método splice.
     BusquedaUsuario.librosPrestados.splice(indiceLibroPrestado, 1); // cambia la disponibilidad del libro
-    alert("El libro: '" + Busquedalibro.titulo + "' ha sido devuelto exitosamente");
+    alert("✅ El libro: '" + Busquedalibro.titulo + "' ha sido devuelto exitosamente");
     //return "libro devuelto exitosamente";
 };
 //-------------------------------------------------------------------------------------------------
@@ -239,7 +327,44 @@ if(titulosFiltro.length === 0){
 //-------------------------------------------------------------------------------------------------
 // 7. Funciones de cálculos estadísticos -> En este bloque se implementan las funciones básicas para realizar cálculos estadísticos
 //-------------------------------------------------------------------------------------------------
-// ⚠️ Falta 
+function calcularEstadisticas(libros) {
+    if (libros.length === 0) {
+        console.log("No hay libros para calcular estadísticas.");
+        return;
+    }
+    //1. Promedio de años de publicación 
+    let sumaAnios = 0;
+    for (let i = 0; i < libros.length; i++) {
+        sumaAnios += libros[i].anio;
+    }
+    const promedio = sumaAnios / libros.length;
+    console.log("El promedio de años de publicación: " + promedio);
+    // 2. Año de publicación más frecuente
+    const conteoAnios = {};
+    for (let i = 0; i < libros.length; i++) {
+        const anio = libros[i].anio;
+        conteoAnios[anio] = (conteoAnios[anio] || 0) + 1;
+    }
+    let anioMasFrecuente;
+    let maxFrecuencia = 0;
+    for (const anio in conteoAnios) {
+        if (conteoAnios[anio] > maxFrecuencia) {
+            maxFrecuencia = conteoAnios[anio];
+            anioMasFrecuente = anio;
+        }
+    }
+    console.log("Año de publicación más frecuente: " + anioMasFrecuente);
+    // 3. Diferencia en años entre el libro más antiguo y el más nuevo
+    let anioMasAntiguo = libros[0].anio;
+    let anioMasNuevo = libros[0].anio;
+    for (let i = 1; i < libros.length; i++) {
+        const anioActual = libros[i].anio;
+        anioMasAntiguo = Math.min(anioMasAntiguo, anioActual);
+        anioMasNuevo = Math.max(anioMasNuevo, anioActual);
+    }
+    const diferencia = anioMasNuevo - anioMasAntiguo;
+    console.log("Diferencia entre años: " + diferencia);
+}
 //-------------------------------------------------------------------------------------------------
 // 8. Funciones de normalización de datos -> En este bloque se implementan las funciones básicas para normalizar datos
 //-------------------------------------------------------------------------------------------------
@@ -313,13 +438,36 @@ while (menu != 8) {
                 let id = parseInt(prompt("Ingrese el ID del libro que desea borrar: "));
                 borrarLibro(id);
             } else if (menuLibros == 5) {
-                alert("Volviendo al menú principal...");
+                alert("📝 Volviendo al menú principal...");
             } else {
-                alert("Opción no válida. Por favor, ingrese un número del 1 al 5.");
+                alert("⚠️ Opción no válida. Por favor, ingrese un número del 1 al 5.");
             }
         } while (menuLibros != 5);
     } else if (menu == 2) {
-        // ⚠️ Falta 
+        let menuUsuarios
+        do {
+            menuUsuarios = parseInt(prompt("Seleccione una opción: \n1. Agregar usuario\n2. Mostrar usuarios\n3. Buscar usuario\n4. Borrar usuario\n5. Volver al menú principal"));
+            if (menuUsuarios == 1){
+                let nombre = prompt("Ingrese su nombre completo para el registro: ");
+                let email = prompt("Ingrese su email para el registro: ");
+                registrarUsuario(nombre, email);
+                alert("✅ Usuario registrado con exito...");
+            } else if (menuUsuarios == 2){
+                mostrarTodosLosUsuarios();
+                alert("✨ Mostrando todos los usuarios registrados...");
+            } else if (menuUsuarios == 3){
+                let email = prompt("Ingrese el email del usuario que desea buscar: ");
+                buscarUsuario(email);
+            } else if (menuUsuarios == 4){
+                let nombre = prompt("Ingrese su nombre completo para eliminar su usuario: ");
+                let email = prompt("Ingrese su email para eliminar su usuario: ");
+                borrarUsuario(nombre, email);
+            } else if (menuUsuarios == 5){
+                alert("📝 Volviendo al menú principal...");
+            } else {
+                alert("⚠️ Opción no válida. Por favor, ingrese un número del 1 al 5.");
+            }
+        } while (menuUsuarios != 5);
     } else if (menu == 3) {
         let menuPrestamos
         do {
@@ -327,11 +475,11 @@ while (menu != 8) {
             if (menuPrestamos == 1) {
                 const librosDisponibles = libros.filter(libro => libro.disponible)
                 if (librosDisponibles.length === 0){
-                    alert("No hay libros disponibles para prestar en este momento... \nVolviendo al menú principal.");
+                    alert("No hay libros disponibles para prestar en este momento... \n📝 Volviendo al menú principal.");
                     menuPrestamos = 3;
                     continue;
                 }
-                alert("Mostrando listados de libros y usuarios disponibles...");
+                alert("✨ Mostrando listados de libros y usuarios disponibles...");
                 mostrarLibrosDisponibles();
                 const listadoUsuarios = usuarios.map(user => `ID: ${user.id}, Nombre: ${user.nombre}`).join('\n');
                 console.log("Listado de usuarios:\n" + listadoUsuarios);
@@ -342,7 +490,7 @@ while (menu != 8) {
                 let idUsuario = parseInt(prompt("Ingrese el ID del usuario al que desea prestar el libro: "));
                 prestarLibro(idLibro, idUsuario);
             } else if (menuPrestamos == 2) {
-                alert("Mostrando listados de libros que pueden ser devueltos y usuarios disponibles...");
+                alert("✨ Mostrando listados de libros que pueden ser devueltos y usuarios disponibles...");
                 mostrarLibrosPrestados();
                 const listadoUsuarios = usuarios.map(user => `ID: ${user.id}, Nombre: ${user.nombre}`).join('\n');
                 console.log("Listado de usuarios:\n" + listadoUsuarios);
@@ -353,24 +501,25 @@ while (menu != 8) {
                 let idUsuario = parseInt(prompt("Ingrese el ID del usuario que devuelve el libro: "));
                 devolverLibro(idLibro, idUsuario);
             } else if (menuPrestamos == 3) {
-                alert("Volviendo al menú principal...");
+                alert("📝 Volviendo al menú principal...");
             } else {
-                alert("Opción no válida. Por favor, ingrese un número del 1 al 3.");
+                alert("⚠️ Opción no válida. Por favor, ingrese un número del 1 al 3.");
             }
         } while (menuPrestamos != 3);
     } else if (menu == 4) {
         generarReporteLibros(libros);
-        alert("Generando reportes...");
+        alert("✨ Generando reportes...");
     } else if (menu == 5) {  
         librosConPalabrasEnTitulo();
-        alert("Mostrando listado de libros...");
+        alert("✨ Mostrando listado de libros...");
     } else if (menu == 6) {
-        // ⚠️ Falta 
+        calcularEstadisticas(libros);
+        alert("✨ Generando estadisticas...");
     } else if (menu == 7) {
         normalizarDatos(libros, usuarios);
-        alert("Normalizando datos...");
+        alert("✨ Normalizando datos...");
     } else {
-        alert("Opción no válida. Por favor, ingrese un número del 1 al 8.");
+        alert("⚠️ Opción no válida. Por favor, ingrese un número del 1 al 8.");
     }
     menu = parseInt(prompt("Ingrese una opcion para continuar: \n1. Gestionar libros \n2. Gestionar usuarios\n3. Sistema de préstamos\n4. Reportes\n5. Identificación de libros\n6. Cálculos Estadísticos\n7. Normalización de datos\n8. Salir"));
 }
