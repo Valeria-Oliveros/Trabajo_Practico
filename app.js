@@ -164,7 +164,7 @@ function buscarUsuario(email) {
         return;
     }
     const usuario = usuarios.find(function(u) {
-        return u.email === email;
+        return u.email.toLowerCase() === email.toLowerCase();
     });
     if (!usuario) {
         alert("❌ No se encontró ningún usuario con el email: " + email);
@@ -181,7 +181,7 @@ function borrarUsuario(nombre, email) {
         alert ("⚠️ Error: Todos los campos son obligatorios para borrar el usuario ⚠️");
         return;
     }
-    const indice = usuarios.findIndex(u => u.nombre === nombre && u.email === email);
+    const indice = usuarios.findIndex(u => u.nombre.toLowerCase() === nombre.toLowerCase() && u.email === email);
     if (indice === -1) {
         alert("❌ No se encontró al usuario '" + nombre + "' con email '" + email + "'");
         return;
