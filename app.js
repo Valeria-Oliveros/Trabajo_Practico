@@ -408,7 +408,7 @@ while (menu != 8) {
                 let criteriobusqueda = parseInt(prompt("Ingrese el criterio de búsqueda: \n1. Título\n2. Autor\n3. Género"));
                 if (criteriobusqueda == 1) {
                     criterio = "titulo";
-                    let valor = prompt("Ingrese el titulo que desea buscar (titulo completo): ");
+                    let valor = prompt("Ingrese el titulo que desea buscar: ");
                     buscarLibro(criterio, valor);
                 } else if (criteriobusqueda == 2) {
                     criterio = "autor";
