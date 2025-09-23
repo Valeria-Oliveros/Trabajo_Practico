@@ -128,7 +128,7 @@ function registrarUsuario(nombre, email){
     }
     // validación si el usuario ya existe 
     for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].email === email) {
+        if (usuarios[i].email.toLowerCase() === email.toLowerCase()) {
             alert("⚠️ El correo electrónico '" + email + "' ya está registrado");
             return;
         }
@@ -181,7 +181,7 @@ function borrarUsuario(nombre, email) {
         alert ("⚠️ Error: Todos los campos son obligatorios para borrar el usuario ⚠️");
         return;
     }
-    const indice = usuarios.findIndex(u => u.nombre.toLowerCase() === nombre.toLowerCase() && u.email === email);
+    const indice = usuarios.findIndex(u => u.nombre.toLowerCase() === nombre.toLowerCase() && u.email.toLowerCase() === email.toLowerCase());
     if (indice === -1) {
         alert("❌ No se encontró al usuario '" + nombre + "' con email '" + email + "'");
         return;
